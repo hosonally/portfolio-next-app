@@ -1,34 +1,32 @@
-"use client";
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+'use client'
+import { useState } from 'react'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 
 export default function Home() {
-  const [message, setMessage] = useState("");
-  const [person, setPerson] = useState("");
+  const [message, setMessage] = useState('')
+  const [person, setPerson] = useState('')
 
   const handleOnChangePerson = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPerson(event.target.value);
-  };
+    setPerson(event.target.value)
+  }
 
   const handleClick = async () => {
     try {
-      const res = await fetch(
-        `/api/hello?person=${encodeURIComponent(person)}`
-      );
-      const data = await res.json();
-      setMessage(data.message);
+      const res = await fetch(`/api/hello?person=${encodeURIComponent(person)}`)
+      const data = await res.json()
+      setMessage(data.message)
     } catch (error) {
-      console.error("Error fetching message:", error);
-      setMessage("Unable to find your path to the success.");
+      console.error('Error fetching message:', error)
+      setMessage('Unable to find your path to the success.')
     }
-  };
+  }
 
   return (
     <>
       <Box
         component="form"
-        sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+        sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
         noValidate
         autoComplete="off"
       >
@@ -49,5 +47,5 @@ export default function Home() {
         <div className="mt-4 text-lg">{message}</div>
       </main>
     </>
-  );
+  )
 }
